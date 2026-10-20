@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artisan Storefront &bull; ArtNova AI</title>
+  <meta name="description" content="Unique handmade products crafted with passion and tradition." />
+  
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet" />
+
+  <!-- Separate CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body style="background: #ffffff;">
+
+  <!-- Simulated Browser Address Bar matching Screen 7 with Shop Switcher -->
+  <div class="browser-url-bar">
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <a href="index.html" class="brand-logo" style="font-size: 1.15rem; margin-right: 14px;">
+        <span class="brand-icon">🌿</span>
+        <span>ArtNova AI</span>
+      </a>
+      <div class="browser-url-pill">
+        <span>🔒</span>
+        <span id="display-shop-url">artnova.ai/kavya-handmade</span>
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <!-- Shop Switcher for Public Store -->
+      <select id="public-shop-select" class="select-field" style="padding: 5px 12px; font-size: 0.85rem; width: auto; border-radius: var(--radius-full); cursor: pointer;" title="Browse another artisan shop">
+        <!-- Populated dynamically -->
+      </select>
+
+      <button id="btn-share-shop" class="btn btn-primary btn-sm" style="padding: 6px 16px; font-size: 0.85rem;">
+        <span>🔗</span> Share
+      </button>
+
+      <a href="dashboard.html" class="btn btn-outline btn-sm" style="padding: 6px 14px; font-size: 0.85rem;">
+        Seller Admin
+      </a>
+    </div>
+  </div>
+
+  <main>
+    <!-- Storefront Header Banner matching Screen 7 -->
+    <header class="store-banner">
+      <div class="container container-narrow">
+        <div class="store-logo-circle">
+          <span id="shop-header-icon">🌿</span>
+        </div>
+        <h1 id="shop-header-title" class="store-title">Kavya Creations</h1>
+        <p id="shop-header-tagline" class="store-tagline">Handmade with Love &bull; Mangaluru</p>
+        <p id="shop-header-bio" class="store-bio">
+          Unique handmade products crafted with passion and tradition.
+        </p>
+      </div>
+    </header>
+
+    <!-- Catalogue Products Section matching Screen 7 -->
+    <section style="padding: 36px 0 70px;">
+      <div class="container">
+        
+        <!-- Category Filter Pills matching Screen 7 -->
+        <div class="filter-bar" id="category-filter-bar" style="justify-content: center; margin-bottom: 34px;">
+          <button class="filter-pill active" data-category="All">All</button>
+          <button class="filter-pill" data-category="Jewellery">Jewellery</button>
+          <button class="filter-pill" data-category="Pottery">Pottery</button>
+          <button class="filter-pill" data-category="Home Decor">Home Decor</button>
+          <button class="filter-pill" data-category="Accessories">Accessories</button>
+        </div>
+
+        <!-- Product Cards Grid matching Screen 7 -->
+        <div id="public-products-grid" class="grid-cols-3">
+          <!-- Populated dynamically for the active or requested shop -->
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Product Detail & WhatsApp Order Modal -->
+  <div class="modal-overlay" id="product-detail-modal">
+    <div class="modal-dialog" style="max-width: 520px;">
+      <div class="modal-header">
+        <span id="modal-category" class="badge-active">Craft</span>
+        <button class="modal-close" onclick="closeModal('product-detail-modal')">&times;</button>
+      </div>
+
+      <div style="aspect-ratio: 1 / 1; border-radius: var(--radius-md); overflow: hidden; background: var(--cream); margin-bottom: 16px;">
+        <img id="modal-img" src="" alt="Product" style="width: 100%; height: 100%; object-fit: cover;" />
+      </div>
+
+      <h2 id="modal-title" class="font-serif" style="font-size: 1.45rem; font-weight: 700; color: var(--ink); margin-bottom: 4px;">
+        Product Title
+      </h2>
+
+      <p id="modal-price" style="font-size: 1.35rem; font-weight: 700; color: var(--brand); margin-bottom: 12px;">
+        ₹499
+      </p>
+
+      <div style="background: var(--cream); padding: 14px 16px; border-radius: var(--radius-md); border: 1px solid var(--border); margin-bottom: 20px;">
+        <h4 style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--muted); margin-bottom: 4px;">Artisan Story</h4>
+        <p id="modal-desc" style="font-size: 0.92rem; line-height: 1.55; color: var(--ink-secondary);">
+          Description
+        </p>
+      </div>
+
+      <button id="modal-whatsapp-btn" class="btn btn-whatsapp btn-block btn-lg">
+        <span>💬</span> Inquire &amp; Order on WhatsApp
+      </button>
+    </div>
+  </div>
+
+  <!-- Bottom Slogan Bar matching Screen 7 -->
+  <footer class="site-footer">
+    <div class="container">
+      <p class="footer-quote">
+        <span>Support Handmade</span> &bull; <span>Support Local</span> &bull; <span>Support Artisans</span> <span>🌿</span>
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/store.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    // Extract seller slug from URL (?seller=slug)
+    const urlParams = new URLSearchParams(window.location.search);
+    const requestedSlug = urlParams.get('seller');
+
+    // Retrieve requested or active shop
+    const currentShop = window.Store.getShopBySlug(requestedSlug);
+    window.Store.recordView(currentShop.slug);
+
+    // Populate storefront headers
+    document.title = `${currentShop.shopName} — Handmade with Love • ArtNova AI`;
+    document.getElementById('shop-header-title').textContent = currentShop.shopName;
+    document.getElementById('shop-header-tagline').textContent = currentShop.tagline || `Handmade with Love • ${currentShop.location || 'India'}`;
+    document.getElementById('shop-header-bio').textContent = currentShop.bio || 'Unique handmade products crafted with passion and tradition.';
+    document.getElementById('display-shop-url').textContent = `artnova.ai/${currentShop.slug}`;
+
+    // Populate Shop Selector Dropdown
+    const shopSelect = document.getElementById('public-shop-select');
+    const allShops = window.Store.getAllShops();
+    shopSelect.innerHTML = allShops.map(s => `
+      <option value="${s.slug}" ${s.slug === currentShop.slug ? 'selected' : ''}>
+        🏪 ${s.shopName} (${s.location || 'Craft'})
+      </option>
+    `).join('');
+
+    shopSelect.addEventListener('change', (e) => {
+      window.location.href = `shop.html?seller=${e.target.value}`;
+    });
+
+    // Render shop products
+    let currentCategory = 'All';
+
+    function renderProducts() {
+      const grid = document.getElementById('public-products-grid');
+      let products = currentShop.products || [];
+
+      if (currentCategory !== 'All') {
+        products = products.filter(p => p.category.toLowerCase() === currentCategory.toLowerCase());
+      }
+
+      if (products.length === 0) {
+        grid.innerHTML = `
+          <div class="card text-center" style="grid-column: 1 / -1; padding: 48px 20px;">
+            <span style="font-size: 3rem; display: block; margin-bottom: 12px;">🌿</span>
+            <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 8px;">No creations found in this collection</h3>
+            <p style="color: var(--muted); font-size: 0.95rem;">Check back soon as ${currentShop.ownerName} crafts new treasures.</p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = products.map(p => `
+        <div class="product-card" onclick="openProductDetail('${p._id}')" style="cursor: pointer;">
+          <div class="product-image-wrap">
+            <img src="${p.image}" alt="${p.name}" />
+          </div>
+          <div class="product-body">
+            <h4 class="product-title">${p.name}</h4>
+            <p class="product-price">₹${p.price}</p>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Category filter pills
+    document.querySelectorAll('.filter-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        currentCategory = pill.getAttribute('data-category');
+        renderProducts();
+      });
+    });
+
+    // Product Detail & WhatsApp Order Modal
+    function openProductDetail(id) {
+      const p = currentShop.products.find(item => item._id === id);
+      if (!p) return;
+
+      document.getElementById('modal-img').src = p.image;
+      document.getElementById('modal-title').textContent = p.name;
+      document.getElementById('modal-price').textContent = `₹${p.price}`;
+      document.getElementById('modal-category').textContent = p.category;
+      document.getElementById('modal-desc').textContent = p.description;
+
+      const whatsappBtn = document.getElementById('modal-whatsapp-btn');
+      whatsappBtn.onclick = () => {
+        window.Store.recordClick(p._id, currentShop.slug);
+        const phone = currentShop.phone ? currentShop.phone.replace(/\D/g, '') : '919876543210';
+        const text = encodeURIComponent(`Hi ${currentShop.ownerName}! I'm interested in ordering "${p.name}" (₹${p.price}) from ${currentShop.shopName}. Is it available?`);
+        window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
+      };
+
+      window.openModal('product-detail-modal');
+    }
+
+    // Share Button
+    document.getElementById('btn-share-shop').addEventListener('click', () => {
+      const fullUrl = window.location.origin + `/shop.html?seller=${currentShop.slug}`;
+      if (navigator.share) {
+        navigator.share({
+          title: currentShop.shopName,
+          text: `Check out handmade crafts by ${currentShop.ownerName} at ${currentShop.shopName}!`,
+          url: fullUrl
+        }).catch(() => {});
+      } else {
+        window.copyToClipboard(fullUrl, `Link for ${currentShop.shopName} copied!`);
+      }
+    });
+
+    // Initial render
+    renderProducts();
+  </script>
+</body>
+</html>

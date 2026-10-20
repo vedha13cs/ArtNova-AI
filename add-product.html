@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ArtNova AI — Product Image Studio</title>
+  
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Separate CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- Top Mobile Bar -->
+  <header class="mobile-top-bar">
+    <a href="dashboard.html" class="brand-logo" style="font-size: 1.2rem;">
+      <span class="brand-icon">🌿</span>
+      <span>ArtNova AI</span>
+    </a>
+    <a href="dashboard.html" style="font-size: 0.85rem; color: var(--muted);">Dashboard</a>
+  </header>
+
+  <div class="app-shell">
+    
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="brand-logo">
+          <span class="brand-icon">🌿</span>
+          <span>ArtNova AI</span>
+        </a>
+      </div>
+
+      <div class="seller-profile-card">
+        <div class="seller-profile-left">
+          <div class="seller-profile-avatar">
+            <img src="assets/images/artisan-hands.jpg" alt="Kavya" />
+          </div>
+          <div class="seller-profile-text">
+            <h4>Kavya Creations</h4>
+            <p>Seller ▾</p>
+          </div>
+        </div>
+      </div>
+
+      <ul class="sidebar-nav">
+        <li>
+          <a href="dashboard.html">
+            <span class="nav-icon">🏠</span>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="add-product.html" class="active">
+            <span class="nav-icon">➕</span>
+            <span>Add Product</span>
+          </a>
+        </li>
+        <li>
+          <a href="products.html">
+            <span class="nav-icon">📦</span>
+            <span>My Products</span>
+          </a>
+        </li>
+        <li>
+          <a href="catalogue.html">
+            <span class="nav-icon">🔗</span>
+            <span>Catalogue</span>
+          </a>
+        </li>
+        <li>
+          <a href="shop.html" target="_blank">
+            <span class="nav-icon">🛍️</span>
+            <span>Public Store</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <a href="#" data-action="logout" style="display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 0.88rem;">
+          <span>↩</span>
+          <span>Logout</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <div class="content-wrapper">
+        
+        <!-- Top Profile Icon -->
+        <div style="display: flex; justify-content: flex-end; margin-bottom: 12px;">
+          <div style="width: 36px; height: 36px; border-radius: 50%; background: #ffffff; border: 1px solid var(--border); display: grid; place-items: center; font-size: 1.1rem; color: var(--brand);">
+            👤
+          </div>
+        </div>
+
+        <!-- Stepper Wizard matching Screen 4 -->
+        <div class="stepper-nav">
+          <div class="stepper-item active" id="step-wiz-1">
+            <div class="stepper-circle">1</div>
+            <span>Upload Image</span>
+          </div>
+          <div class="stepper-line" id="line-1"></div>
+          <div class="stepper-item" id="step-wiz-2">
+            <div class="stepper-circle">2</div>
+            <span>Enhance</span>
+          </div>
+          <div class="stepper-line" id="line-2"></div>
+          <div class="stepper-item" id="step-wiz-3">
+            <div class="stepper-circle">3</div>
+            <span>Details</span>
+          </div>
+          <div class="stepper-line" id="line-3"></div>
+          <div class="stepper-item" id="step-wiz-4">
+            <div class="stepper-circle">4</div>
+            <span>Preview</span>
+          </div>
+        </div>
+
+        <!-- ===================================================================
+             VIEW 1: SCREEN 4 — Product Image Studio (Upload & Enhance)
+             =================================================================== -->
+        <div id="view-upload-enhance">
+          <div style="margin-bottom: 24px;">
+            <h1 style="font-size: 1.8rem; font-weight: 700; color: var(--ink);">
+              Product Image Studio
+            </h1>
+            <p style="color: var(--muted); font-size: 0.95rem; margin-top: 4px;">
+              Upload your product photo and let AI enhance it for a professional look. ✨
+            </p>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;" class="studio-split-grid">
+            
+            <!-- Left Side: Dropzone -->
+            <div class="card" style="padding: 24px; display: flex; flex-direction: column; justify-content: center;">
+              <div class="studio-dropzone" id="studio-dropzone">
+                <span style="font-size: 2.8rem; display: block; margin-bottom: 8px; color: var(--brand);">☁️</span>
+                <p style="font-weight: 600; font-size: 1.05rem; color: var(--ink); margin-bottom: 6px;">
+                  Drag &amp; drop your image here
+                </p>
+                <p style="color: var(--muted); font-size: 0.85rem; margin-bottom: 16px;">or</p>
+                
+                <button type="button" class="btn btn-primary btn-sm" id="btn-browse-file">
+                  Choose File
+                </button>
+                
+                <p style="font-size: 0.78rem; color: var(--muted); margin-top: 20px;">
+                  Supported formats: JPG, PNG, WEBP &bull; Max size: 5MB
+                </p>
+                <input type="file" id="studio-file-input" accept="image/jpeg,image/png,image/webp" style="display: none;" />
+              </div>
+
+              <!-- Quick Demo Picker -->
+              <div style="margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--border); text-align: center;">
+                <p style="font-size: 0.8rem; color: var(--muted); margin-bottom: 8px;">Or load a demo craft photo:</p>
+                <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
+                  <button type="button" class="btn btn-outline btn-sm" onclick="selectDemoPhoto('beaded-necklace.jpg', 'Beaded Necklace', 'Jewellery', 499, 'Natural Jade & Beads')">
+                    📿 Necklace
+                  </button>
+                  <button type="button" class="btn btn-outline btn-sm" onclick="selectDemoPhoto('terracotta-vase.jpg', 'Clay Pot', 'Pottery', 299, 'Terracotta Clay')">
+                    🏺 Clay Pot
+                  </button>
+                  <button type="button" class="btn btn-outline btn-sm" onclick="selectDemoPhoto('macrame-decor.jpg', 'Macrame Wall Hanging', 'Home Decor', 799, 'Organic Cotton')">
+                    🌿 Macrame
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Side: Preview (Before & After) Matching Screen 4 -->
+            <div class="card" style="padding: 24px;">
+              <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--ink); margin-bottom: 12px;">Preview</h3>
+
+              <div class="comparison-images">
+                <!-- Before -->
+                <div class="compare-card">
+                  <div class="compare-img-wrap">
+                    <img id="preview-before" src="assets/images/beaded-necklace.jpg" alt="Before Image" />
+                  </div>
+                  <span class="compare-label">Before</span>
+                </div>
+
+                <!-- Arrow -->
+                <div class="compare-arrow">→</div>
+
+                <!-- After -->
+                <div class="compare-card">
+                  <div class="compare-img-wrap" style="box-shadow: 0 0 0 2px var(--brand);">
+                    <img id="preview-after" src="assets/images/beaded-necklace.jpg" alt="After Enhanced Image" style="filter: contrast(1.15) brightness(1.08) saturate(1.16);" />
+                  </div>
+                  <span class="compare-label" style="color: var(--brand); font-weight: 600;">After</span>
+                </div>
+              </div>
+
+              <!-- Feature checklist matching Screen 4 -->
+              <div style="margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--border);">
+                <p style="font-size: 0.85rem; font-weight: 600; color: var(--ink); margin-bottom: 6px;">Image enhancement includes:</p>
+                <ul class="enhancement-features-list">
+                  <li>Background optimization</li>
+                  <li>Better lighting &amp; clarity</li>
+                  <li>Auto resizing with Cloudinary</li>
+                </ul>
+              </div>
+
+              <!-- Next Button matching Screen 4 -->
+              <div style="display: flex; justify-content: flex-end; margin-top: 22px;">
+                <button type="button" id="btn-goto-step3" class="btn btn-primary" style="padding: 10px 24px;">
+                  Next →
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ===================================================================
+             VIEW 2: SCREEN 5 — AI Description Generator
+             =================================================================== -->
+        <div id="view-ai-generator" style="display: none;">
+          <div style="margin-bottom: 22px;">
+            <a href="#" id="btn-back-to-step1" style="font-size: 0.88rem; font-weight: 600; color: var(--brand); display: inline-flex; align-items: center; gap: 4px; margin-bottom: 8px;">
+              ← Back
+            </a>
+            <h1 style="font-size: 1.8rem; font-weight: 700; color: var(--ink);">
+              AI Description Generator
+            </h1>
+            <p style="color: var(--muted); font-size: 0.95rem; margin-top: 4px;">
+              Enter your product details and let AI create an attractive description.
+            </p>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;" class="studio-split-grid">
+            
+            <!-- Left Column: Form Inputs matching Screen 5 -->
+            <div class="card" style="padding: 26px;">
+              <div class="form-group">
+                <label class="form-label" for="input-prod-name">Product Name *</label>
+                <input type="text" id="input-prod-name" class="form-control" value="Handmade Necklace" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="select-prod-cat">Category *</label>
+                <select id="select-prod-cat" class="select-field">
+                  <option value="Jewellery" selected>Jewellery</option>
+                  <option value="Pottery">Pottery</option>
+                  <option value="Home Decor">Home Decor</option>
+                  <option value="Accessories">Accessories</option>
+                  <option value="Clothing">Clothing</option>
+                  <option value="Art">Art</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="input-prod-price">Price *</label>
+                <div style="position: relative;">
+                  <span style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-weight: 600; color: var(--muted);">₹</span>
+                  <input type="number" id="input-prod-price" class="form-control" value="499" style="padding-left: 32px;" required />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="input-prod-material">Material</label>
+                <input type="text" id="input-prod-material" class="form-control" value="Beads" />
+              </div>
+
+              <!-- Generate Button matching Screen 5 -->
+              <button type="button" id="btn-trigger-ai" class="btn btn-primary btn-block" style="margin-top: 12px; padding: 12px;">
+                <span>✨</span> Generate Description
+              </button>
+            </div>
+
+            <!-- Right Column: AI Output Card matching Screen 5 -->
+            <div class="ai-output-card">
+              <div>
+                <div class="ai-output-header">
+                  <span>📄</span>
+                  <span>Generated Description</span>
+                  <span style="margin-left: auto;">✨</span>
+                </div>
+
+                <div id="ai-description-text" class="ai-output-body">
+                  Discover the beauty of handmade jewellery with this elegant beaded necklace. Perfect for everyday wear and special occasions, this unique piece adds a charming touch to your style. Crafted with care and attention to detail, it's a timeless addition to your collection.
+                </div>
+                
+                <!-- Editable Textarea (toggleable with Edit button) -->
+                <textarea id="ai-description-edit" class="textarea-field" style="display: none; min-height: 140px; margin-bottom: 20px;"></textarea>
+              </div>
+
+              <!-- Buttons matching Screen 5 -->
+              <div class="ai-output-actions">
+                <button type="button" id="btn-edit-description" class="btn btn-outline" style="flex: 1;">
+                  <span>✏️</span> Edit
+                </button>
+                <button type="button" id="btn-use-description" class="btn btn-primary" style="flex: 1.5;">
+                  Use this Description
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ===================================================================
+             VIEW 3: STEP 4 — Preview & Publish to Catalogue
+             =================================================================== -->
+        <div id="view-final-preview" style="display: none;">
+          <div style="max-width: 440px; margin: 0 auto;">
+            <div style="margin-bottom: 20px; text-align: center;">
+              <h2 style="font-size: 1.6rem; font-weight: 700;">Final Preview</h2>
+              <p style="color: var(--muted); font-size: 0.9rem;">Review your product listing before publishing to your catalogue.</p>
+            </div>
+
+            <div class="product-card" style="box-shadow: var(--shadow-md); margin-bottom: 24px;">
+              <div class="product-image-wrap">
+                <img id="final-card-img" src="assets/images/beaded-necklace.jpg" alt="Product" />
+              </div>
+              <div class="product-body">
+                <h4 id="final-card-title" class="product-title" style="font-size: 1.15rem;">Handmade Necklace</h4>
+                <div class="product-price-row">
+                  <span id="final-card-price" class="product-price" style="font-size: 1.35rem;">₹499</span>
+                  <span class="badge-active">Active</span>
+                </div>
+                <p id="final-card-desc" style="font-size: 0.88rem; color: var(--ink-secondary); margin-top: 10px; line-height: 1.5;">
+                  Discover the beauty of handmade jewellery with this elegant beaded necklace.
+                </p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 12px;">
+              <button type="button" id="btn-back-to-step3" class="btn btn-outline" style="flex: 1;">
+                ← Edit Details
+              </button>
+              <button type="button" id="btn-publish-final" class="btn btn-primary btn-lg" style="flex: 1.5;">
+                Publish to Catalogue ✓
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <nav class="mobile-bottom-nav">
+    <a href="dashboard.html" class="mobile-nav-item">
+      <span class="nav-icon">🏠</span>
+      <span>Dashboard</span>
+    </a>
+    <a href="add-product.html" class="mobile-nav-item active">
+      <span class="nav-icon">➕</span>
+      <span>Add</span>
+    </a>
+    <a href="products.html" class="mobile-nav-item">
+      <span class="nav-icon">📦</span>
+      <span>Products</span>
+    </a>
+    <a href="catalogue.html" class="mobile-nav-item">
+      <span class="nav-icon">🔗</span>
+      <span>Catalogue</span>
+    </a>
+  </nav>
+
+  <script src="js/store.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    let selectedImageSrc = 'assets/images/beaded-necklace.jpg';
+    let isEditingDescription = false;
+
+    // View Navigation
+    function showView(step) {
+      document.getElementById('view-upload-enhance').style.display = (step === 1 || step === 2) ? 'block' : 'none';
+      document.getElementById('view-ai-generator').style.display = (step === 3) ? 'block' : 'none';
+      document.getElementById('view-final-preview').style.display = (step === 4) ? 'block' : 'none';
+
+      // Update stepper indicators
+      for (let i = 1; i <= 4; i++) {
+        const item = document.getElementById(`step-wiz-${i}`);
+        if (item) {
+          if (i === step) item.className = 'stepper-item active';
+          else if (i < step) item.className = 'stepper-item active';
+          else item.className = 'stepper-item';
+        }
+      }
+
+      for (let i = 1; i <= 3; i++) {
+        const line = document.getElementById(`line-${i}`);
+        if (line) {
+          if (i < step) line.classList.add('filled');
+          else line.classList.remove('filled');
+        }
+      }
+    }
+
+    // Step 1 & 2 actions
+    const dropzone = document.getElementById('studio-dropzone');
+    const fileInput = document.getElementById('studio-file-input');
+    const btnBrowse = document.getElementById('btn-browse-file');
+
+    if (btnBrowse && fileInput) {
+      btnBrowse.addEventListener('click', () => fileInput.click());
+    }
+
+    if (dropzone && fileInput) {
+      dropzone.addEventListener('click', (e) => {
+        if (e.target !== btnBrowse) fileInput.click();
+      });
+
+      fileInput.addEventListener('change', (e) => {
+        if (e.target.files.length) {
+          handleFile(e.target.files[0]);
+        }
+      });
+    }
+
+    function handleFile(file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        selectedImageSrc = e.target.result;
+        document.getElementById('preview-before').src = selectedImageSrc;
+        document.getElementById('preview-after').src = selectedImageSrc;
+        window.showToast('Image uploaded & enhanced!', 'success');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function selectDemoPhoto(filename, name, cat, price, mat) {
+      selectedImageSrc = `assets/images/${filename}`;
+      document.getElementById('preview-before').src = selectedImageSrc;
+      document.getElementById('preview-after').src = selectedImageSrc;
+      document.getElementById('input-prod-name').value = name;
+      document.getElementById('select-prod-cat').value = cat;
+      document.getElementById('input-prod-price').value = price;
+      document.getElementById('input-prod-material').value = mat;
+      window.showToast(`Selected demo craft: ${name}`, 'info');
+    }
+
+    document.getElementById('btn-goto-step3').addEventListener('click', () => {
+      showView(3);
+    });
+
+    document.getElementById('btn-back-to-step1').addEventListener('click', (e) => {
+      e.preventDefault();
+      showView(1);
+    });
+
+    // Step 3 actions: AI Generation
+    const btnTriggerAI = document.getElementById('btn-trigger-ai');
+    btnTriggerAI.addEventListener('click', async () => {
+      const name = document.getElementById('input-prod-name').value.trim();
+      const cat = document.getElementById('select-prod-cat').value;
+      const price = document.getElementById('input-prod-price').value;
+      const mat = document.getElementById('input-prod-material').value.trim();
+
+      if (!name) {
+        window.showToast('Please enter the product name.', 'error');
+        return;
+      }
+
+      btnTriggerAI.disabled = true;
+      btnTriggerAI.innerHTML = '<span>✨</span> Generating Story…';
+
+      try {
+        const desc = await window.ArtNovaAPI.generateDescription({ name, category: cat, material: mat, price });
+        document.getElementById('ai-description-text').textContent = desc;
+        document.getElementById('ai-description-edit').value = desc;
+        window.showToast('AI story generated successfully!', 'success');
+      } finally {
+        btnTriggerAI.disabled = false;
+        btnTriggerAI.innerHTML = '<span>✨</span> Generate Description';
+      }
+    });
+
+    // Edit button toggle
+    const btnEdit = document.getElementById('btn-edit-description');
+    const descText = document.getElementById('ai-description-text');
+    const descEdit = document.getElementById('ai-description-edit');
+
+    btnEdit.addEventListener('click', () => {
+      isEditingDescription = !isEditingDescription;
+      if (isEditingDescription) {
+        descEdit.value = descText.textContent.trim();
+        descText.style.display = 'none';
+        descEdit.style.display = 'block';
+        btnEdit.innerHTML = '<span>💾</span> Done Editing';
+      } else {
+        descText.textContent = descEdit.value.trim() || descText.textContent;
+        descEdit.style.display = 'none';
+        descText.style.display = 'block';
+        btnEdit.innerHTML = '<span>✏️</span> Edit';
+      }
+    });
+
+    // Use description button
+    document.getElementById('btn-use-description').addEventListener('click', () => {
+      if (isEditingDescription) {
+        descText.textContent = descEdit.value.trim() || descText.textContent;
+        descEdit.style.display = 'none';
+        descText.style.display = 'block';
+        btnEdit.innerHTML = '<span>✏️</span> Edit';
+        isEditingDescription = false;
+      }
+
+      // Populate Step 4 Preview
+      document.getElementById('final-card-img').src = selectedImageSrc;
+      document.getElementById('final-card-title').textContent = document.getElementById('input-prod-name').value;
+      document.getElementById('final-card-price').textContent = '₹' + document.getElementById('input-prod-price').value;
+      document.getElementById('final-card-desc').textContent = descText.textContent;
+
+      showView(4);
+    });
+
+    document.getElementById('btn-back-to-step3').addEventListener('click', () => {
+      showView(3);
+    });
+
+    // Step 4: Publish to store
+    document.getElementById('btn-publish-final').addEventListener('click', () => {
+      const newProduct = {
+        name: document.getElementById('input-prod-name').value.trim(),
+        category: document.getElementById('select-prod-cat').value,
+        price: Number(document.getElementById('input-prod-price').value) || 499,
+        material: document.getElementById('input-prod-material').value.trim(),
+        description: descText.textContent.trim(),
+        image: selectedImageSrc,
+        original: selectedImageSrc
+      };
+
+      window.Store.addProduct(newProduct);
+      window.showToast('Product published to your catalogue!', 'success');
+
+      setTimeout(() => {
+        window.location.href = 'catalogue.html';
+      }, 700);
+    });
+
+    // Start at Step 1
+    showView(1);
+  </script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+.btn{@apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 font-semibold transition disabled:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand}
+.btn-p{@apply btn bg-brand text-white hover:bg-brand-dark}
+.btn-o{@apply btn border border-brand/20 bg-white text-brand hover:bg-brand-soft}
+.inp{@apply w-full rounded-xl border border-[#e4e6e0] bg-white px-4 py-3 outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/15}
+.card{@apply rounded-2xl border border-[#e9e9e3] bg-paper shadow-sm}
+.eyebrow{@apply text-xs font-semibold uppercase tracking-[.18em] text-brand}

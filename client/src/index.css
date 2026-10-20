@@ -1,0 +1,6 @@
+@tailwind base;@tailwind components;@tailwind utilities;
+html{scroll-behavior:smooth}
+body{@apply bg-cream text-ink font-sans antialiased}
+button,a,input,select,textarea{-webkit-tap-highlight-color:transparent}
+::selection{background:#dbe9df;color:#16483d}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}

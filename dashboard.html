@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ArtNova AI — Seller Dashboard</title>
+  
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Separate CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- Top Mobile Bar -->
+  <header class="mobile-top-bar">
+    <a href="dashboard.html" class="brand-logo" style="font-size: 1.2rem;">
+      <span class="brand-icon">🌿</span>
+      <span>ArtNova AI</span>
+    </a>
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <a href="shop.html" target="_blank" style="font-size: 0.85rem; color: var(--brand); font-weight: 600;">View Shop</a>
+      <a href="#" data-action="logout" style="font-size: 0.85rem; color: var(--muted);">Logout</a>
+    </div>
+  </header>
+
+  <div class="app-shell">
+    
+    <!-- Left Sidebar Matching Screen 3 -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="brand-logo">
+          <span class="brand-icon">🌿</span>
+          <span>ArtNova AI</span>
+        </a>
+      </div>
+
+      <!-- Seller Profile Card Matching Screen 3 -->
+      <div class="seller-profile-card">
+        <div class="seller-profile-left">
+          <div class="seller-profile-avatar">
+            <img src="assets/images/artisan-hands.jpg" alt="Kavya avatar" />
+          </div>
+          <div class="seller-profile-text">
+            <h4>Kavya Creations</h4>
+            <p>Seller ▾</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nav Items Matching Screen 3 -->
+      <ul class="sidebar-nav">
+        <li>
+          <a href="dashboard.html" class="active">
+            <span class="nav-icon">🏠</span>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="add-product.html">
+            <span class="nav-icon">➕</span>
+            <span>Add Product</span>
+          </a>
+        </li>
+        <li>
+          <a href="products.html">
+            <span class="nav-icon">📦</span>
+            <span>My Products</span>
+          </a>
+        </li>
+        <li>
+          <a href="catalogue.html">
+            <span class="nav-icon">🔗</span>
+            <span>Catalogue</span>
+          </a>
+        </li>
+        <li>
+          <a href="#analytics" onclick="window.showToast('Analytics synchronized in real-time!', 'info'); return false;">
+            <span class="nav-icon">📊</span>
+            <span>Analytics</span>
+          </a>
+        </li>
+        <li>
+          <a href="catalogue.html">
+            <span class="nav-icon">⚙️</span>
+            <span>Settings</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <a href="#" data-action="logout" style="display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 0.88rem;">
+          <span>↩</span>
+          <span>Logout</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content Matching Screen 3 -->
+    <main class="main-content">
+      <div class="content-wrapper">
+        
+        <!-- Top Bar Right User Avatar -->
+        <div style="display: flex; justify-content: flex-end; margin-bottom: 20px;">
+          <a href="shop.html" target="_blank" class="btn btn-outline btn-sm" style="margin-right: 12px;">
+            Preview Customer Shop ↗
+          </a>
+          <div style="width: 36px; height: 36px; border-radius: 50%; background: #ffffff; border: 1px solid var(--border); display: grid; place-items: center; font-size: 1.1rem; color: var(--brand);">
+            👤
+          </div>
+        </div>
+
+        <!-- Greeting Header Matching Screen 3 -->
+        <div style="margin-bottom: 26px;">
+          <h1 style="font-size: 1.9rem; font-weight: 700; color: var(--ink);">
+            Good Morning, Kavya! 👋
+          </h1>
+          <p style="color: var(--muted); font-size: 0.95rem; margin-top: 3px;">
+            Here's what's happening with your store today.
+          </p>
+        </div>
+
+        <!-- 3 Stat Cards Matching Screen 3 -->
+        <div class="grid-cols-3" style="margin-bottom: 34px;">
+          <!-- Card 1: Total Products -->
+          <div class="stat-card">
+            <div class="stat-icon">📦</div>
+            <div class="stat-info">
+              <p>Total Products</p>
+              <h3 id="stat-products">12</h3>
+            </div>
+          </div>
+
+          <!-- Card 2: Total Views -->
+          <div class="stat-card">
+            <div class="stat-icon eye">👁️</div>
+            <div class="stat-info">
+              <p>Total Views</p>
+              <h3 id="stat-views">1,248</h3>
+            </div>
+          </div>
+
+          <!-- Card 3: Catalogue Link Clicks -->
+          <div class="stat-card">
+            <div class="stat-icon link">🔗</div>
+            <div class="stat-info">
+              <p>Catalogue Link Clicks</p>
+              <h3 id="stat-clicks">326</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Products Section Matching Screen 3 -->
+        <div style="margin-bottom: 36px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px;">
+            <h2 style="font-size: 1.2rem; font-weight: 700; color: var(--ink);">Recent Products</h2>
+            <a href="products.html" style="font-size: 0.88rem; font-weight: 600; color: var(--brand);">View All</a>
+          </div>
+
+          <!-- 4 Product Cards Row matching Screen 3 -->
+          <div class="grid-cols-4">
+            <!-- 1. Beaded Necklace -->
+            <div class="product-card">
+              <div class="product-image-wrap">
+                <img src="assets/images/beaded-necklace.jpg" alt="Beaded Necklace" />
+              </div>
+              <div class="product-body">
+                <h4 class="product-title">Beaded Necklace</h4>
+                <p class="product-price">₹499</p>
+                <div style="margin-top: 6px;">
+                  <span class="badge-active">Active</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Clay Pot -->
+            <div class="product-card">
+              <div class="product-image-wrap">
+                <img src="assets/images/terracotta-vase.jpg" alt="Clay Pot" />
+              </div>
+              <div class="product-body">
+                <h4 class="product-title">Clay Pot</h4>
+                <p class="product-price">₹299</p>
+                <div style="margin-top: 6px;">
+                  <span class="badge-active">Active</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Macrame Wall Hanging -->
+            <div class="product-card">
+              <div class="product-image-wrap">
+                <img src="assets/images/macrame-decor.jpg" alt="Macrame Wall Hanging" />
+              </div>
+              <div class="product-body">
+                <h4 class="product-title">Macrame Wall Hanging</h4>
+                <p class="product-price">₹799</p>
+                <div style="margin-top: 6px;">
+                  <span class="badge-active">Active</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4. Handmade Earrings -->
+            <div class="product-card">
+              <div class="product-image-wrap">
+                <img src="assets/images/handmade-earrings.jpg" alt="Handmade Earrings" />
+              </div>
+              <div class="product-body">
+                <h4 class="product-title">Handmade Earrings</h4>
+                <p class="product-price">₹349</p>
+                <div style="margin-top: 6px;">
+                  <span class="badge-active">Active</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Mobile Bottom Navigation Bar -->
+  <nav class="mobile-bottom-nav">
+    <a href="dashboard.html" class="mobile-nav-item active">
+      <span class="nav-icon">🏠</span>
+      <span>Dashboard</span>
+    </a>
+    <a href="add-product.html" class="mobile-nav-item">
+      <span class="nav-icon">➕</span>
+      <span>Add</span>
+    </a>
+    <a href="products.html" class="mobile-nav-item">
+      <span class="nav-icon">📦</span>
+      <span>Products</span>
+    </a>
+    <a href="catalogue.html" class="mobile-nav-item">
+      <span class="nav-icon">🔗</span>
+      <span>Catalogue</span>
+    </a>
+  </nav>
+
+  <script src="js/store.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
